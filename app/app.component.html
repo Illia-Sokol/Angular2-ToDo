@@ -1,0 +1,15 @@
+<!--<h1>Angular2 by Sokol</h1>-->
+<nav class="ui attached menu">
+    <div class="ui container">
+        <div class="header item">
+            <h1><i class="chckmark box icon"></i>{{ title }}</h1>
+        </div>
+    </div>
+</nav>
+
+<div class="ui text container">
+
+    <todo-form (added)="onTodoAdded($event)"></todo-form>
+
+    <todo-list [todos]="todos"></todo-list>
+</div>
