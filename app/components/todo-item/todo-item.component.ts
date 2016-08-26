@@ -1,10 +1,10 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Todo} from './todo'
+import {Todo} from '../../shared/todo.model'
  
 @Component({
     selector: 'todo-item',
-    templateUrl: './app/todo/todo-item.component.html',
-    styleUrls: ['./app/todo/todo-item.component.css']
+    templateUrl: './app/components/todo-item/todo-item.component.html',
+    styleUrls: ['./app/components/todo-item/todo-item.component.css']
     // inputs: ['todo']
 })
 

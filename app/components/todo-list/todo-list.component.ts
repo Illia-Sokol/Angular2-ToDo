@@ -1,11 +1,11 @@
 import {Component, Input} from '@angular/core';
-import {TodoItem} from './todo-item.component'
-import {Todo} from './todo';
+import {TodoItem} from '../todo-item/todo-item.component'
+import {Todo} from '../../shared/todo.model';
 
 @Component({
     selector: 'todo-list',
-    templateUrl: './app/todo/todo-list.component.html',
-    styleUrls: ['./app/todo/todo-list.component.css'],
+    templateUrl: './app/components/todo-list/todo-list.component.html',
+    styleUrls: ['./app/components/todo-list/todo-list.component.css'],
     directives: [TodoItem]
     // inputs: ['todos']
 })
