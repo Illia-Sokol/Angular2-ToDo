@@ -5,9 +5,10 @@ import {Todo} from './shared/todo.model';
 import {todos} from './shared/todo.data';
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-app',
-    templateUrl: './app/app.component.html',
-    styleUrls: ['./app/app.component.css'],
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css'],
     directives: [TodoFormComponent ,TodoListComponent]
 })
 

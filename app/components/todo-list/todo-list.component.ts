@@ -3,9 +3,10 @@ import {TodoItem} from '../todo-item/todo-item.component'
 import {Todo} from '../../shared/todo.model';
 
 @Component({
+    moduleId: module.id,
     selector: 'todo-list',
-    templateUrl: './app/components/todo-list/todo-list.component.html',
-    styleUrls: ['./app/components/todo-list/todo-list.component.css'],
+    templateUrl: 'todo-list.component.html',
+    styleUrls: ['todo-list.component.css'],
     directives: [TodoItem]
 })
 
