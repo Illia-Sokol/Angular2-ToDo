@@ -14,14 +14,12 @@ import {todos} from './shared/todo.data';
 
 export class AppComponent {
     title: string;
-    todos: Todo[];
     
     constructor() {
         this.title = 'Angular2 2DO';
-        this.todos = todos;
     }
 
-    onTodoAdded(todo: Todo) {
-        this.todos.push(todo);
-    }
+    // onTodoAdded(todo: Todo) {
+    //     this.todos.push(todo);
+    // }
 }
