@@ -7,11 +7,18 @@ import {Todo} from '../../shared/todo.model';
     templateUrl: './app/components/todo-list/todo-list.component.html',
     styleUrls: ['./app/components/todo-list/todo-list.component.css'],
     directives: [TodoItem]
-    // inputs: ['todos']
 })
 
 export class TodoListComponent {
     @Input() todos: Todo[];
+
+    get sortedTodos() {
+        return this.todos.sort( (a: Todo, b: Todo) => {
+            if(a.done && !b.done) return 1;
+            else if(!a.done && b.done) return -1;
+            else return 0;
+        } );
+    }
 
     onTodoDeleted(todo: Todo) {
         if(todo) {
