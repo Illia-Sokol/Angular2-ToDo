@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TodoFormComponent} from './components/todo-form/todo-form.component';
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {Todo} from './shared/todo.model';
+import {todos} from './shared/todo.data';
 
 @Component({
     selector: 'todo-app',
@@ -16,10 +17,7 @@ export class AppComponent {
     
     constructor() {
         this.title = 'Angular2 2DO';
-        this.todos = [
-            new Todo('Angular2'),
-            new Todo('TypeScript')
-        ];
+        this.todos = todos;
     }
 
     onTodoAdded(todo: Todo) {
