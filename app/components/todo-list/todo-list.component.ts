@@ -13,7 +13,13 @@ export class TodoListComponent {
     @Input() todos: Todo[];
 
     get sortedTodos() {
-        return this.todos.sort( (a: Todo, b: Todo) => {
+        return this.todos.map((todo: Todo) => todo)
+        .sort( (a: Todo, b: Todo) => {
+            if(a.title > b.title) return 1;
+            else if(a.title < b.title) return -1;
+            else return 0;
+        })
+        .sort( (a: Todo, b: Todo) => {
             if(a.done && !b.done) return 1;
             else if(!a.done && b.done) return -1;
             else return 0;
