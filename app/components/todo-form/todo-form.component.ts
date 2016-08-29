@@ -6,8 +6,7 @@ import {TodoService} from '../../shared/todo.service'
     moduleId: module.id,
     selector: 'todo-form',
     templateUrl: 'todo-form.component.html',
-    styleUrls: ['todo-form.component.css'],
-    providers: [TodoService]
+    styleUrls: ['todo-form.component.css']
 })
 
 export class TodoFormComponent {

@@ -9,8 +9,7 @@ import {TodoService} from '../../shared/todo.service';
     selector: 'todo-list',
     templateUrl: 'todo-list.component.html',
     styleUrls: ['todo-list.component.css'],
-    directives: [TodoItem],
-    providers: [TodoService]
+    directives: [TodoItem]
 })
 
 export class TodoListComponent implements OnInit {
