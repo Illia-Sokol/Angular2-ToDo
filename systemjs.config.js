@@ -1,5 +1,5 @@
 /**
- * System configuration for Angular 2 apps
+ * System configuration for Angular 2 samples
  * Adjust as necessary for your application needs.
  */
 (function(global) {
@@ -17,13 +17,14 @@
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
   };
 
   var ngPackageNames = [
     'common',
     'compiler',
     'core',
+    'forms',
     'http',
     'platform-browser',
     'platform-browser-dynamic',
@@ -32,20 +33,29 @@
     'upgrade',
   ];
 
+  // Individual files (~300 requests):
+  function packIndex(pkgName) {
+    packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+  }
+
+  // Bundled (~40 requests):
+  function packUmd(pkgName) {
+    packages['@angular/'+pkgName] = { main: '/bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
+  }
+
+  // Most environments should use UMD; some (Karma) need the individual index files
+  var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
+
   // Add package entries for angular packages
-  ngPackageNames.forEach(function(pkgName) {
+  ngPackageNames.forEach(setPackageConfig);
 
-    // Bundled (~40 requests):
-    packages['@angular/'+pkgName] = { main: pkgName + '.umd.js', defaultExtension: 'js' };
-
-    // Individual files (~300 requests):
-    //packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
-  });
+  // No umd for router yet
+  packages['@angular/router'] = { main: 'index.js', defaultExtension: 'js' };
 
   var config = {
     map: map,
     packages: packages
-  }
+  };
 
   System.config(config);
 
