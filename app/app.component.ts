@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HTTP_PROVIDERS } from '@angular/http';
+
 import {TodoFormComponent} from './components/todo-form/todo-form.component';
 import {TodoListComponent} from './components/todo-list/todo-list.component';
 import {Todo} from './shared/todo.model';
@@ -11,7 +13,7 @@ import {TodoService} from './shared/todo.service'
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.css'],
     directives: [TodoFormComponent ,TodoListComponent],
-    providers: [TodoService]
+    providers: [HTTP_PROVIDERS, TodoService]
 })
 
 export class AppComponent {

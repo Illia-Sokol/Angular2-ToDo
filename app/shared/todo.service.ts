@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 
 import { ITodo } from './todo.model';
 import { todos } from './todo.data';
@@ -6,9 +9,12 @@ import { todos } from './todo.data';
 @Injectable()
 
 export class TodoService {
+    constructor(private http: Http) {}
 
     getTodos(): Promise<ITodo[]> {
-        return new Promise(resolve => setTimeout( () => resolve(todos), 2000));
+        return this.http.get('app/shared/todos.json')
+                .toPromise()
+                .then(res => console.log(res));
     }
 
     addTodo(todo: ITodo): void {
