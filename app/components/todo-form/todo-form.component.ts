@@ -17,7 +17,7 @@ export class TodoFormComponent {
     add(title: string) {
         if (title) {
             let todo = new Todo(title);
-            this.todoService.addTodo(todo);
+            this.todoService.addTodo(todo).then(todo => console.log(todo));
         }
     }
 }

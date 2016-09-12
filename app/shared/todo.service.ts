@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
 import { ITodo } from './todo.model';
-import { todos } from './todo.data';
 
 @Injectable()
 
@@ -12,21 +11,41 @@ export class TodoService {
     constructor(private http: Http) {}
 
     getTodos(): Promise<ITodo[]> {
-        return this.http.get('app/shared/todos.json')
+        return this.http.get('api/todos')
                 .toPromise()
-                .then(res => res.json())
+                .then(res => res.json().data)
                 .catch(this.handleError);
     }
 
-    addTodo(todo: ITodo): void {
-        todos.push(todo);
+    addTodo(todo: ITodo): Promise<ITodo> {
+        return this.post(todo);
     }
 
-    deleteTodo(todo: ITodo): void {
-        let index = todos.indexOf(todo);
-        if (index > -1) {
-            todos.splice(index, 1);
-        }
+    deleteTodo(todo: ITodo): Promise<ITodo> {
+        return this.delete(todo);
+    }
+
+    private post(todo: ITodo): Promise<ITodo> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http.post('api/todos', JSON.stringify(todo), { headers })
+                        .toPromise()
+                        .then(res => res.json().data)
+                        .catch(this.handleError);
+    }
+
+    private delete(todo: ITodo): Promise<ITodo> {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        let url = `api/todos/${todo.id}`
+
+        return this.http.delete(url, {headers})
+                        .toPromise()
+                        .then(res => todo)
+                        .catch(this.handleError);
     }
 
     private handleError(err: any): Promise<any> {
