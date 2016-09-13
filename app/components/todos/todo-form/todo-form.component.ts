@@ -1,5 +1,5 @@
 import {Component, Output, EventEmitter} from '@angular/core';
-import {Todo} from '../../../shared/todo.model';
+import { Todo } from '../../../shared/todo.model';
 
 @Component({
     moduleId: module.id,
@@ -9,7 +9,7 @@ import {Todo} from '../../../shared/todo.model';
 })
 
 export class TodoFormComponent {
-    @Output() created = new EventEmitter();
+    @Output() created: EventEmitter<Todo>;
 
     constructor() {
         this.created = new EventEmitter<Todo>();

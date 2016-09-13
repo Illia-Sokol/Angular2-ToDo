@@ -1,26 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-import {ITodo, Todo} from '../../shared/todo.model';
-import {TodoItem} from '../todo-item/todo-item.component'
-import {TodoService} from '../../shared/todo.service';
+import { ITodo } from '../../../shared/todo.model';
+import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 @Component({
     moduleId: module.id,
     selector: 'todo-list',
     templateUrl: 'todo-list.component.html',
     styleUrls: ['todo-list.component.css'],
-    directives: [TodoItem]
+    directives: [TodoItemComponent]
 })
 
-export class TodoListComponent implements OnInit {
-    todos: ITodo[];
+export class TodoListComponent {
+    @Input() todos: ITodo[];
+    @Output() delete: EventEmitter<ITodo>;
+    @Output() toggled: EventEmitter<ITodo>;
 
-    constructor(private todoService: TodoService) {
-       this.todos = [];
-    }
-
-    ngOnInit() {
-        this.todoService.getTodos().then(todos => this.todos = todos);
+    constructor() {
+       this.delete = new EventEmitter<ITodo>();
+       this.toggled = new EventEmitter<ITodo>();
     }
 
     get sortedTodos(): ITodo[] {
@@ -37,7 +35,11 @@ export class TodoListComponent implements OnInit {
         } );
     }
 
+    onTodoToggled(todo: ITodo): void {
+        this.toggled.emit(todo);
+    }
+
     onTodoDeleted(todo: ITodo): void {
-        this.todoService.deleteTodo(todo).then(todo => console.log(todo));;
+        this.delete.emit(todo);
     }
 }
