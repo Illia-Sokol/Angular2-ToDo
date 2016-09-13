@@ -13,11 +13,11 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
 
 export class TodoListComponent {
     @Input() todos: ITodo[];
-    @Output() delete: EventEmitter<ITodo>;
+    @Output() deleted: EventEmitter<ITodo>;
     @Output() toggled: EventEmitter<ITodo>;
 
     constructor() {
-       this.delete = new EventEmitter<ITodo>();
+       this.deleted = new EventEmitter<ITodo>();
        this.toggled = new EventEmitter<ITodo>();
     }
 
@@ -40,6 +40,6 @@ export class TodoListComponent {
     }
 
     onTodoDeleted(todo: ITodo): void {
-        this.delete.emit(todo);
+        this.deleted.emit(todo);
     }
 }

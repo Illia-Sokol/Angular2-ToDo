@@ -35,7 +35,7 @@ export class TodoService {
         let body = JSON.stringify(todo);
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers });
-        return this.http.post(this.apiUrl , body, options)
+        return this.http.post(this.apiUrl, body, options)
                         .toPromise()
                         .then(res => res.json().data)
                         .catch(this.handleError);
@@ -46,7 +46,7 @@ export class TodoService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers });
 
-        let url = `${this.apiUrl}${todo.id}`
+        let url = `${this.apiUrl}/${todo.id}`
 
         return this.http.put(url, body, options)
                         .toPromise()
@@ -58,7 +58,7 @@ export class TodoService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers });
 
-        let url = `${this.apiUrl}${todo.id}`
+        let url = `${this.apiUrl}/${todo.id}`
 
         return this.http.delete(url, options)
                         .toPromise()

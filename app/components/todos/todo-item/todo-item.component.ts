@@ -18,12 +18,12 @@ export class TodoItemComponent {
         this.toggled = new EventEmitter<Todo>();
     }
 
-    toogle() {
+    toggle() {
         this.todo.done = !this.todo.done;
         this.toggled.emit(this.todo);
     }
 
-    deleteTodo() {
+    delete() {
         this.deleted.emit(this.todo);
     }
 }
