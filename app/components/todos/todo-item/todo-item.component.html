@@ -1,5 +1,5 @@
 <div class="ui checkbox">
-    <input type="checkbox" (change)="checkInput()">
+    <input type="checkbox" (change)="toggle()" [checked]="todo.done">
     <label for="" [ngClass]="{'done': todo.done}">{{todo.title}}</label>
 </div>
 <button class="ui red icon button" (click)="deleteTodo()"><i class="trash outline icon"></i></button>

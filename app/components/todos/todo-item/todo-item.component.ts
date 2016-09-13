@@ -1,22 +1,26 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Todo} from '../../shared/todo.model'
+import {Todo} from '../../../shared/todo.model'
  
 @Component({
     moduleId: module.id,
     selector: 'todo-item',
     templateUrl: 'todo-item.component.html',
     styleUrls: ['todo-item.component.css']
-    // inputs: ['todo']
 })
 
-export class TodoItem {
+export class TodoItemComponent {
     @Input() todo: Todo;
-    @Output() deleted = new EventEmitter();
+    @Output() deleted: EventEmitter<Todo>;
+    @Output() toggled: EventEmitter<Todo>;
 
-    constructor() {}
+    constructor() {
+        this.deleted = new EventEmitter<Todo>();
+        this.toggled = new EventEmitter<Todo>();
+    }
 
-    checkInput() {
+    toogle() {
         this.todo.done = !this.todo.done;
+        this.toggled.emit(this.todo);
     }
 
     deleteTodo() {
